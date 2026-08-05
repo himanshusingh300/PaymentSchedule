@@ -1,5 +1,5 @@
-streamlit==1.48.1
-starlette==0.47.2
-pdfplumber==0.11.7
-pandas==2.3.1
-openpyxl==3.1.5
+-c constraints.txt
+streamlit
+pdfplumber
+pandas
+openpyxl
