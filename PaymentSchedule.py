@@ -89,6 +89,16 @@ if st.button("Generate Excel"):
             if m:
                 record["Acceptance Date"] = m.group(1)
 
+            # Acceptance Number
+            m = re.search(
+                r'Acceptance\s*No:\s*(\d{2}/\d{2}/\d{4})',
+                text,
+                re.IGNORECASE
+            )
+
+            if m:
+                record["Acceptance No"] = m.group(1)
+
             # Name Of Applicant
             m = re.search(
                 r'Name\s*Of\s*Applicant:\s*(.*?)\s*2\.',
