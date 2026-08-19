@@ -46,6 +46,7 @@ if st.button("Generate Excel"):
                 "PDF Name": uploaded_file.name,
                 "Nodal RLDC": "",
                 "Application Number": "",
+                "Acceptance No": "",
                 "Acceptance Date": "",
                 "Name Of Applicant": "",
                 "Injection Entity/State/Region": "",
@@ -89,15 +90,20 @@ if st.button("Generate Excel"):
             if m:
                 record["Acceptance Date"] = m.group(1)
 
-            # Acceptance Number
+           
+            # Acceptance No
             m = re.search(
-                r'Acceptance\s*No:\s*(\d{2}/\d{2}/\d{4})',
+                r'Acceptance\s*No:\s*(.+?)\s*Acceptance\s*Date:',
                 text,
-                re.IGNORECASE
+                re.IGNORECASE | re.DOTALL
             )
-
+            
             if m:
-                record["Acceptance No"] = m.group(1)
+                record["Acceptance No"] = re.sub(
+                    r'\s+',
+                    ' ',
+                    m.group(1)
+                ).strip()
 
             # Name Of Applicant
             m = re.search(
